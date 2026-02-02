@@ -8,12 +8,11 @@ Created on Fri Jun  1 11:18:28 2018
 from setuptools import setup
 
 def readme():
-    with open('README.rst') as f:
+    with open("README.rst", encoding="utf-8") as f:
         return f.read()
-    f.close()
     
 setup(name= 'chinook',
-      version = '1.1.3',
+      version = '1.1.4.dev0',
       author = 'Ryan P. Day', 
       author_email = 'ryanday7@gmail.com',
       description = 'Tools for tight-binding and simulation of ARPES',
@@ -26,10 +25,10 @@ setup(name= 'chinook',
         	'Topic :: Scientific/Engineering :: Physics',
           'Operating System :: OS Independent'
 	      ],
-
       license= 'MIT',
       packages= ['chinook'],
       install_requires=['numpy','matplotlib','scipy'],
       include_package_data=True,
+      python_requires=">=3.9",
       package_data = {'chinook':['atomic_mass.txt','electron_configs.txt']}
       )
