@@ -61,8 +61,13 @@ ndic={1:1,2:2,3:3,4:3.7,5:4,6:4.2}
 
 
 textnm="electron_configs.txt"
-filename = importlib.resources.files("chinook").joinpath(textnm)
-_LINES = filename.read_text(encoding="utf-8").splitlines()
+try:
+    _TEXT = importlib.resources.read_text("chinook", textnm, encoding="utf-8")
+except (FileNotFoundError, TypeError):
+    # Fallback: try to read from the local directory if package resource fails
+    with open(textnm, encoding="utf-8") as f:
+        _TEXT = f.read()
+_LINES = _TEXT.splitlines()
 
 def get_con(filename,Z):
     

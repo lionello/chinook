@@ -31,8 +31,12 @@ import importlib.resources
 
 
 a_file = 'atomic_mass.txt'
-filename = importlib.resources.files("chinook").joinpath(a_file)
-_TEXT = filename.read_text(encoding="utf-8")
+try:
+    _TEXT = importlib.resources.read_text("chinook", a_file, encoding="utf-8")
+except (FileNotFoundError, TypeError):
+    # Fallback: try to read from the local directory if package resource fails
+    with open(a_file, encoding="utf-8") as f:
+        _TEXT = f.read()
 _LINES = _TEXT.splitlines()
 
 def get_mass_from_number(N_at):
