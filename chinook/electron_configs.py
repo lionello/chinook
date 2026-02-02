@@ -42,7 +42,6 @@ import numpy as np
 import scipy.special as sc
 import matplotlib.pyplot as plt
 import importlib.resources
-import linecache
 from math import factorial
 from math import gamma
 
@@ -60,13 +59,14 @@ A = 10**-10
 ndic={1:1,2:2,3:3,4:3.7,5:4,6:4.2}
 
 
-textnm = "electron_configs.txt"
-filename = importlib.resources.files("chinook").joinpath(textnm)
-with open(filename, encoding="utf-8") as f:
-    _TEXT = f.read()
-_LINES = _TEXT.splitlines()
+from chinook.resource_loader import load_text_lines
 
-def get_con(Z, filename=filename):
+textnm = "electron_configs.txt"
+
+def _lines():
+    return load_text_lines('chinook', textnm)
+
+def get_con(Z, filename=None):
     
     '''
     Get electron configuration for a given element, from electron_configs.txt.
@@ -85,7 +85,7 @@ def get_con(Z, filename=filename):
     ***
     '''
     try:
-        return _LINES[int(Z) - 1].split(',')[1].strip()
+        return _lines()[int(Z) - 1].split(',')[1].strip()
     except IndexError:
         print('ERROR: Invalid atomic number, returning  nothing')
         return ''

@@ -5,7 +5,7 @@ Created on Fri Jun  1 11:18:28 2018
 @author: rday
 """
 
-from setuptools import setup
+from setuptools import setup, find_packages
 
 def readme():
     with open("README.rst", encoding="utf-8") as f:
@@ -26,9 +26,9 @@ setup(name= 'chinook',
           'Operating System :: OS Independent'
 	      ],
       license= 'MIT',
-      packages= ['chinook'],
+      packages= find_packages(),
       install_requires=['numpy','matplotlib','scipy'],
       include_package_data=True,
       python_requires=">=3.9",
-      package_data = {'chinook':['atomic_mass.txt','electron_configs.txt']}
+      package_data = {'chinook': ['*.txt']}
       )
