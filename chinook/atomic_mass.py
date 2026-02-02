@@ -31,11 +31,10 @@ import importlib.resources
 
 
 a_file = 'atomic_mass.txt'
-try:
-    _TEXT = importlib.resources.read_text("chinook", a_file, encoding="utf-8")
-except (FileNotFoundError, TypeError):
-    # Fallback: try to read from the local directory if package resource fails
-    with open(a_file, encoding="utf-8") as f:
+import importlib.resources
+
+with importlib.resources.path("chinook", a_file) as file_path:
+    with open(file_path, encoding="utf-8") as f:
         _TEXT = f.read()
 _LINES = _TEXT.splitlines()
 

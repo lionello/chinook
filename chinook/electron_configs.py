@@ -61,11 +61,10 @@ ndic={1:1,2:2,3:3,4:3.7,5:4,6:4.2}
 
 
 textnm="electron_configs.txt"
-try:
-    _TEXT = importlib.resources.read_text("chinook", textnm, encoding="utf-8")
-except (FileNotFoundError, TypeError):
-    # Fallback: try to read from the local directory if package resource fails
-    with open(textnm, encoding="utf-8") as f:
+import importlib.resources
+
+with importlib.resources.path("chinook", textnm) as file_path:
+    with open(file_path, encoding="utf-8") as f:
         _TEXT = f.read()
 _LINES = _TEXT.splitlines()
 
