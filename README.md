@@ -8,3 +8,10 @@ For any questions, please send us mail at ayching_at_phas_dot_ubc_dot_ca
 Thanks!
 
 -- The chinook team
+
+## Getting started
+
+To get started, install the latest version of chinook and its dependencies with `pip`:
+```sh
+pip install -r https://raw.githubusercontent.com/qmlab-ubc-ca/chinook/refs/heads/master/requirements.txt
+```
