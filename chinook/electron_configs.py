@@ -138,7 +138,7 @@ def Z_eff(Z_ind,orb):
     
     l_dic = {"s":0,"p":1,"d":2,"f":3}  
     l_dic_inv = {0:"s",1:"p",2:"d",3:"f"}
-    e_conf = get_con(filename,Z_ind)
+    e_conf = get_con(Z_ind)
     n = int(orb[0])
     if orb[1].isalpha():
         l=orb[1] # if orbital string already written in form of 2p for example, rather than 21, simply take l as 'p'
